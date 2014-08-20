@@ -1,0 +1,88 @@
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="confirmModalLabel">Bevestigen</h4>
+            </div>
+            <div class="modal-body">Vangstregistratie verwijderen?</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Annuleren</button>
+                <button type="button" class="btn btn-primary" ng-click="deleteCurrentRegistration()"
+                        data-dismiss="modal">OK
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="photoModalLabel">Foto</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h4>Vangstregistraties</h4>
+
+<div class="row">
+    <alert type="alertService.get().type" close="alertService.clear()" ng-show="alertService.get().msg">
+        {{alertService.get().msg}}
+    </alert>
+</div>
+
+<div class="row">
+<pagination boundary-links="true" total-items="totalItems" page="currentPage" max-size="maxSize" rotate="false"
+            class="pagination-sm" items-per-page="pageSize" previous-text="&lsaquo;" next-text="&rsaquo;"
+            first-text="&laquo;" last-text="&raquo;" on-select-page="pageChanged(page)"></pagination>
+</div>
+
+<table class="table table-striped row">
+    <tr ng-hide="fishRegistrations.length">
+        <td>Geen vangsregistraties gevonden.</td>
+    </tr>
+
+    <tr ng-show="fishRegistrations.length">
+        <th>Datum</th>
+        <th>Tijdstip</th>
+        <th>Uitzetcode</th>
+        <th>Gewicht</th>
+        <th>Lengte</th>
+        <th>Soort</th>
+        <th>Vijver</th>
+        <th>Opmerkingen</th>
+        <th>Foto</th>
+        <th></th>
+    </tr>
+    <tr ng-repeat="registration in fishRegistrations">
+        <td>{{registration.FishRegistration.date | date:'d-M-yyyy'}}</td>
+        <td>{{registration.FishRegistration.time | date:'HH:mm'}}</td>
+        <td>{{registration.FishRegistration.fish_code}}</td>
+        <td>{{registration.FishRegistration.fish_weight}}</td>
+        <td>{{registration.FishRegistration.fish_length}}</td>
+        <td>{{registration.FishType.name}}</td>
+        <td>{{registration.Pond.code}} ({{registration.Pond.description}})</td>
+        <td>{{registration.FishRegistration.comment}}</td>
+        <td><span data-toggle="modal" data-target="#photoModal" class="fa fa-camera clickable"></span></td>
+        <td><a href="#/FishRegistration/edit/{{registration.FishRegistration.id}}"><div ng-show="registration.FishRegistration.is_owner" class="fa fa-edit"></div></a>
+            <div ng-show="registration.FishRegistration.is_owner" data-toggle="modal" data-target="#confirmModal" ng-click="setModel(registration.FishRegistration)"
+                  class="fa fa-trash-o clickable"></div>
+        </td>
+    </tr>
+</table>
+
+<div class="row">
+    <pagination boundary-links="true" total-items="totalItems" page="currentPage" max-size="maxSize" rotate="false"
+                class="pagination-sm" items-per-page="pageSize" previous-text="&lsaquo;" next-text="&rsaquo;"
+                first-text="&laquo;" last-text="&raquo;" on-select-page="pageChanged(page)"></pagination>
+</div>

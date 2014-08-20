@@ -1,0 +1,65 @@
+body {
+    padding-top: 75px;
+}
+
+.right {
+    float: right;
+    margin-left: 15px;
+}
+
+.large-modal > .modal-dialog {
+    width: 900px;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.modal-body input.ng-invalid.ng-dirty {
+    background-color: #FA787E;
+}
+
+.modal-body input.ng-valid.ng-dirty {
+    background-color: #78FA89;
+}
+
+.fade {
+    opacity: 0;
+    -webkit-transition: opacity 0.15s linear;
+    -moz-transition: opacity 0.15s linear;
+    -o-transition: opacity 0.15s linear;
+    transition: opacity 0.15s linear;
+}
+
+.fade.in {
+    opacity: 1;
+}
+
+.table-hover tbody tr:hover > td {
+    cursor: pointer
+}
+
+/* SQL log */
+.cake-sql-log {
+    background: #fff;
+}
+
+.cake-sql-log td {
+    padding: 4px 8px;
+    text-align: left;
+    font-family: Monaco, Consolas, "Courier New", monospaced;
+    vertical-align: top;
+    border-bottom: 1px solid #ddd;
+}
+
+.cake-sql-log th {
+    padding: 4px 8px;
+    text-align: left;
+    font-family: Monaco, Consolas, "Courier New", monospaced;
+    vertical-align: top;
+    border-bottom: 1px solid #ddd;
+}
+
+.cake-sql-log caption {
+    color: #fff;
+}

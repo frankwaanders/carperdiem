@@ -1,0 +1,65 @@
+<form name="form" class="modal-body" novalidate>
+    <div class="modal-header">
+        <button type="button" class="close" aria-hidden="true" ng-click="cancel()">&times;</button>
+        <h4 class="modal-title" id="registrationModalLabel">Vangstregistratie bewerken</h4>
+    </div>
+
+    <label for="dateField">Datum vangst</label>
+
+    <p class="input-group">
+
+        <input type="text" class="form-control" datepicker-popup="dd-MM-yyyy" id="dateField"
+               ng-model="fishRegistration.FishRegistration.date" date-options="dateOptions"
+               is-open="opened" required>
+            <span class="input-group-btn">
+            <button class="btn btn-default" ng-click="openCalendar($event)"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+    </p>
+
+    <label for="timeField">Tijdstip vangst</label>
+    <input type="time" class="form-control" id="timeField"
+           ng-model="fishRegistration.FishRegistration.time"
+           required>
+
+    <label for="fishCode">Uitzetcode</label>
+    <input type="text" class="form-control" id="fishCode"
+           ng-model="fishRegistration.FishRegistration.fish_code" required>
+
+    <label for="weight">Gewicht</label>
+
+    <div class="input-group">
+        <input type="text" class="form-control" id="weight"
+               ng-model="fishRegistration.FishRegistration.fish_weight" integer min="0">
+        <span class="input-group-addon">gram</span>
+    </div>
+
+    <label for="length">Lengte</label>
+
+    <div class="input-group">
+        <input type="text" class="form-control" id="length"
+               ng-model="fishRegistration.FishRegistration.fish_length" integer
+               min="0">
+        <span class="input-group-addon">cm</span>
+    </div>
+
+    <label for="fishType">Soort karper</label>
+    <select id="fishType" class="form-control" ng-model="fishRegistration.FishRegistration.fish_type_id"
+            ng-options="value.FishType.id as value.FishType.name for (key, value) in fishTypes"
+            required></select>
+
+    <label for="pond">Vijver</label>
+    <select id="pond" class="form-control" ng-model="fishRegistration.FishRegistration.pond_id"
+            ng-options="value.Pond.id as value.Pond.code for (key, value) in ponds" required></select>
+
+    <label for="commentField">Opmerkingen</label>
+    <textarea class="form-control" rows="3" placeholder="Hier komt eventueel commentaar te staan."
+              id="commentField" ng-model="fishRegistration.FishRegistration.comment"></textarea>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Annuleren</button>
+        <button type="button" class="btn btn-primary"
+                ng-click="saveRegistration()" data-dismiss="modal" ng-disabled="form.$invalid">Wijzigingen opslaan
+        </button>
+    </div>
+</form>
